@@ -19,17 +19,17 @@ public class Calculo {
 				filtraTipo.add(transportadora);
 			}
 		}
-		calcularPrioridades(transportadoras, prioridade, distancia);
+		ordenarTransportado(transportadoras, prioridade, distancia);
 		return transportadoras.get(0);
 	}
 
 	public void calcular(String origem, String destino, List<Transportadora> transportadoras, Prioridade prioridade,
 			int distancia) {
-		calcularPrioridades(transportadoras, prioridade, distancia);
+		ordenarTransportado(transportadoras, prioridade, distancia);
 
 	}
 
-	private void calcularPrioridades(List<Transportadora> transportadoras, Prioridade prioridade, int distancia) {
+	private void ordenarTransportado(List<Transportadora> transportadoras, Prioridade prioridade, int distancia) {
 		if (prioridade == Prioridade.menorPreco) {
 			transportadoras.sort(Comparator.comparingDouble(Transportadora::getValor));
 		} else if (prioridade == Prioridade.menorTempo) {
