@@ -1,8 +1,7 @@
 package br.com.cardboardbox.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,13 +13,26 @@ public class Transportadora {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@NotNull
-	private double valor;
-	@NotNull
-	private int tempo;
 
-	@Enumerated(EnumType.ORDINAL)
-	private TipoTransporte tipo;
+	
+	@NotNull
+	@Embedded
+	private Tipo tipo;
+
+	private double valor;
+	private double tempo;
+
+	public Transportadora(int id, @NotNull Tipo tipo, double valor, double tempo) {
+		super();
+		this.id = id;
+		this.tipo = tipo;
+		this.valor = valor;
+		this.tempo = tempo;
+	}
+
+	public Transportadora() {
+
+	}
 
 	public int getId() {
 		return id;
@@ -28,6 +40,14 @@ public class Transportadora {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 
 	public double getValor() {
@@ -38,20 +58,17 @@ public class Transportadora {
 		this.valor = valor;
 	}
 
-	public int getTempo() {
+	public double getTempo() {
 		return tempo;
 	}
 
-	public void setTempo(int tempo) {
+	public void setTempo(double tempo) {
 		this.tempo = tempo;
 	}
-
-	public TipoTransporte getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoTransporte tipo) {
-		this.tipo = tipo;
+	@Override
+	public String toString() {
+		
+		return "Tempo: " + getTempo() + ", Valor: " + getValor() + ", Tipo: " + getTipo() + ", ID: " + getId() + ", Tipo: " + getTipo();
 	}
 
 }
