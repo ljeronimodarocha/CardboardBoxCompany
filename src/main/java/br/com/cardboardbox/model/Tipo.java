@@ -1,5 +1,5 @@
 package br.com.cardboardbox.model;
 
-public enum TipoTransporte {
+public enum Tipo {
 	AEREO, TERRESTRE
 }
