@@ -2,7 +2,9 @@ package br.com.cardboardbox.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import br.com.cardboardbox.model.Prioridade;
 import br.com.cardboardbox.model.Tipo;
@@ -10,10 +12,9 @@ import br.com.cardboardbox.model.Transportadora;
 
 public class Calculo {
 
-	private static List<Transportadora> filtraTipo = new ArrayList<>();
-
 	public Transportadora calcular(String origem, String destino, Tipo tipo, List<Transportadora> transportadoras,
 			Prioridade prioridade, int distancia) {
+		List<Transportadora> filtraTipo = new ArrayList<>();
 		for (Transportadora transportadora : transportadoras) {
 			if (transportadora.getTipo() == tipo) {
 				filtraTipo.add(transportadora);
@@ -30,14 +31,27 @@ public class Calculo {
 	}
 
 	private void ordenarTransportado(List<Transportadora> transportadoras, Prioridade prioridade, int distancia) {
+
 		if (prioridade == Prioridade.menorPreco) {
 			transportadoras.sort(Comparator.comparingDouble(Transportadora::getValor));
+			List<Double> uniques = new ArrayList<Double>();
+			List<Double> duplicates = new ArrayList<Double>();
+			
+			for (Transportadora transportadora : transportadoras) {
+				double valor = transportadora.getValor();
+				if(true) {
+					uniques.add(valor);
+				}else {
+					duplicates.add(valor);
+				}
+				
+			}
+			System.out.println(duplicates.toString());
 
 		} else if (prioridade == Prioridade.menorTempo) {
 			transportadoras.sort(Comparator.comparingDouble(Transportadora::getTempo));
 		}
-		System.out.println(distancia * transportadoras.get(0).getValor() / 10);
-		System.out.println(transportadoras.get(0));
+
 	}
 
 }

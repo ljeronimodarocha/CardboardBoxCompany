@@ -14,7 +14,6 @@ public class Transportadora {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	
 	@NotNull
 	@Embedded
 	private Tipo tipo;
@@ -65,10 +64,12 @@ public class Transportadora {
 	public void setTempo(double tempo) {
 		this.tempo = tempo;
 	}
+
 	@Override
 	public String toString() {
-		
-		return "Tempo: " + getTempo() + ", Valor: " + getValor() + ", Tipo: " + getTipo() + ", ID: " + getId() + ", Tipo: " + getTipo();
+
+		return "Tempo: " + getTempo() + ", Valor: " + getValor() + ", Tipo: " + getTipo() + ", ID: " + getId()
+				+ ", Tipo: " + getTipo();
 	}
 
 }
